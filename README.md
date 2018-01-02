@@ -1,5 +1,5 @@
 # Database Assignment
-This project is about creating a databse schema for Restaurants Management System (RMS).<br><br>
+This project is about creating a database schema for Restaurants Management System (RMS).<br><br>
 The main aim of RMS is to store customer information, store customers order, store items available in the restaurant, etc.
 We must be able to perform various operations like generate the bill for an order, find out most no. of times ordered item, etc. <br><br>
 First, I developed an Entity Relationship Model for the RMS.
