@@ -192,8 +192,14 @@ SET character_set_client = @saved_cs_client;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` FUNCTION `fn_GetOrderTimeElapsed`(customerID int) RETURNS time
-begin
-	return SEC_TO_TIME(TIMESTAMPDIFF(SECOND,(select order_timestamp from customer_order where order_timestamp = (select max(order_timestamp) from customer_order group by cust_id having cust_id=customerID)),CURRENT_TIMESTAMP()));
+begin	
+    declare tempvar time;
+    if((select deliver from customer_order where order_timestamp = (select max(order_timestamp) from customer_order group by cust_id having cust_id=customerID))='T') then
+        set tempvar = SEC_TO_TIME(TIMESTAMPDIFF(SECOND,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP()));
+    else
+		set tempvar = SEC_TO_TIME(TIMESTAMPDIFF(SECOND,(select order_timestamp from customer_order where order_timestamp = (select max(order_timestamp) from customer_order group by cust_id having cust_id=customerID)),CURRENT_TIMESTAMP()));
+	end if;
+    return tempvar;
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
