@@ -7,7 +7,7 @@ I figured out five different entities for RMS which are Customer, Customer_Order
 The ER Model is present in the restaurants_system.pdf file.<br><br>
 Later, I created five tables for the five entities and inserted some sample data.<br><br>
 
-## I have provided five features.<br><br>
+## I have provided five features<br><br>
 ### First feature is a view to print information of customer with most number of visits.<br>
 
 ### Second feature is a view to print item information which is ordered the most.<br>
